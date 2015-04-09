@@ -119,8 +119,24 @@
           </section>
           
           <section>
-            <h3>...makes information very easy to consume.</h3>
+            <code><pre style="border: 0; box-shadow: none; font-size: 1em; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;a href=&quot;http://twitter.com/martindale&quot; rel=&quot;me&quot;&gt;<br/>
+&nbsp;&nbsp;Eric on Twitter<br />
+&lt;/a&gt;
+            </pre></code>
+          </section>
+          
+          <section data-background="img/facebook-open-graph.jpg"></section>
+          
+          <section>
+            <h3>...makes information very easy to consume.<sup>*</sup></h3>
             <h3 class="fragment"><code>microformats.org</code></h3>
+          </section>
+          
+          <section>
+            <p>While <strong>the World Wide Web</strong> is a <strong>publishing platform</strong>,<br/>
+              <span class="fragment"><strong>the <u>Internet</u></strong> should be a secure network of privacy-<br />
+                aware applications that protect individual liberties.</span>
           </section>
         
         </section>
@@ -148,6 +164,13 @@
 
           </section>
           
+          <section>
+            <h2>Servers should serve resources, not applications.</h2>
+            <h3 class="fragment">what about all those client-side JS frameworks?</h3>
+            <p class="fragment">They're perfect for <em>progressively enhancing</em> a document,<br />
+              but only <em>after</em> it has been served.</p>
+          </section>
+          
           <section class="big-code">
             <code><pre>
 $ curl -H "Accept: text/html" irs.gov/returns
@@ -156,6 +179,11 @@ $ curl -H "Accept: text/html" irs.gov/returns
   &lt;head&gt;
 ...
             </pre></code>
+            
+            <p class="fragment">Full document including a list of returns,<br />
+              <span class="fragment">and maybe some Javascript to live-update the page.</span>
+            </p>
+            
           </section>
           <section class="big-code">
             <code><pre>
@@ -191,6 +219,23 @@ HTTP/2.0 200 OK
 }
             </pre></code>
           </section>
+          
+          <section>
+            <h3>Methods</h3>
+            
+            <table>
+              <tr><td>GET</td><td>to retrieve a document or collection</td></tr>
+              <tr><td>POST</td><td>to create a document in a collection</td></tr>
+              <tr><td>PUT</td><td>to create a document at a specific location</td></tr>
+              <tr><td>PATCH</td><td>to update a document at a specific location</td></tr>
+              <tr><td>DELETE</td><td>to remove a document at a specific location</td></tr>
+              <tr><td>HEAD</td><td>to retrieve a document or collection metadata</td></tr>
+              <tr><td>OPTIONS</td><td>to retrieve a list of methods a document supports<sup>*</sup></td></tr>
+            </table>
+            
+            <p><sup>*</sup> in the current context (HTTP Auth)</p>
+          </section>
+
         </section>
 
         <section>
@@ -368,6 +413,7 @@ ws.send({
 });
             </code></pre>
           </section>
+          
         </section>
         
         <section data-background="https://raw.githubusercontent.com/martindale/maki/master/public/img/maki-architecture.png" data-background-size="70%"></section>
