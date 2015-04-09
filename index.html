@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Maki: From Zero to MVP in Five Minutes</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    
+    <style type="text/css">
+      .reveal pre {
+        box-shadow: none;
+      }
+      .reveal .big-code pre {
+        font-size: 1.1em;
+      }
+      
+      .reveal pre code {
+        padding: 0em 0em 0em 1em;
+        max-height: 90%;
+      }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <center><img src="img/maki-logo.jpg" style="margin:0;background:none;border:0;box-shadow:none;" /></center>
+          <h1>Maki</h1>
+          <center><h4 style="max-width: 90%; margin-top: -1em;">hand-rolled goodness</h4></center>
+          <center><h2 style="max-width: 90%;">From Zero to MVP In Five Minutes</h2></center>
+          <h2><code style="text-transform: lowercase;">maki.ericmartindale.com</code></h2>
+          <h5>Resource-based architecture-as-a-library</h5>
+          <br>
+          <p>
+            <small><a href="https://github.com/martindale">@martindale</a> &bull; Atlanta NodeJS Meetup &bull; April 9th, 2015</small>
+          </p>
+        </section>
+        
+        <section data-background="img/eat-sleep-hack-repeat.jpg" data-background-size="70%">
+
+        </section>
+        
+        <section>
+          <h2>Why Maki?</h2>
+          <ul>
+            <li class="fragment">LocalSense, 2011 – 2013</li>
+            <li class="fragment">Startup Weekend, March 2013</li>
+            <li class="fragment">↳ Coursefork, funded company</li>
+            <li class="fragment">&nbsp; &nbsp; &nbsp; ↳ Trinket: <code>trinket.io</code></li>
+            <li class="fragment">soundtrack.io, May 2013 – now</li>
+            <li class="fragment">BitPay, December 2013 – now</li>
+        </section>
+        
+        <section>
+          <h2>In the beginning...</h2>
+          
+          <section></section>
+
+          <section>
+            <h3>Internet !== World Wide Web</h3>
+          </section>
+
+          <section>
+            <h3>The Internet didn't really take off</h3>
+            <h3 class="fragment">...until the World Wide Web was created.</h3>
+            <h3 class="fragment">(specifically,&nbsp;&nbsp;&nbsp; <span style="letter-spacing: 0.2em;">hypertext</span> &nbsp;)
+          </section>
+
+          <section>
+            <h2><code>&lt;a href="location"&gt;document&lt;/a&gt;</code></h2>
+          </section>
+
+        </section>
+        
+        <section>
+          <h2>The Semantic Web</h2>
+          
+          <section></section>
+          
+          <section><h3>...is all about <u>knowledge representation</u>.</section>
+          
+          <section>
+            <code><pre style="border: 0; box-shadow: none; font-size: 1em; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;abbr title=&quot;2015-04-09T21:16:37Z&quot;&gt;<br/>
+&nbsp;&nbsp;3 minutes ago<br />
+&lt;/abbr&gt;
+            </pre></code>
+          </section>
+          
+          <section>
+            <h3>...makes information very easy to consume.</h3>
+            <h3 class="fragment"><code>microformats.org</code></h3>
+          </section>
+        
+        </section>
+        
+        <section>
+          <h2>HTTP is Really Cool!</h2>
+          
+          <section></section>
+          
+          <section>
+            <table>
+              <tr class="fragment"><td>Events</td><td>WebSockets (http Upgrade header)</td></tr>
+              <tr class="fragment"><td>Pipelining</td><td>spdy, http/2.0</td></tr>
+              <tr class="fragment"><td>Content Negotiation</td><td>Accept, Accept-Language headers</td></tr>
+              <tr class="fragment"><td>Methods</td><td>verbs: OPTIONS, PATCH, PUT...</td></tr>
+              <tr class="fragment"><td>Authentication</td><td>Basic Auth (username, password)<br />Cryptographic (HTTP Signatures)</td></tr>
+            </table>
+
+            <br />
+
+            <h2 class="fragment">The Same URI can serve many users,</h2>
+            <h2 class="fragment">but allow referencing of the same document.</h2>
+            
+            <h4 class="fragment">and we don't need any stinkin' cookies, either.</h4>
+
+          </section>
+          
+          <section class="big-code">
+            <code><pre>
+$ curl -H "Accept: text/html" irs.gov/returns
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+...
+            </pre></code>
+          </section>
+          <section class="big-code">
+            <code><pre>
+$ curl -H "Accept: application/json" irs.gov/returns
+[
+  {
+    "id": 8675309,
+    "date": "Thu Apr 09 2015 21:48:57 GMT-0400 (EDT)",
+    "amount": 2753.22,
+    "status": "pending"
+  },
+  ...
+]
+            </pre></code>
+          </section>
+          <section class="big-code">
+            <code><pre>
+var ws = new WebSocket('irs.gov/returns/8675309');
+ws.onmessage = function(msg) {
+  console.log('Resource updated.', msg );
+};
+            </pre></code>
+          </section>
+          <section class="big-code">
+            <code><pre>
+$ curl -X PATCH -d "status=issued" irs.gov/returns/8675309
+HTTP/2.0 200 OK
+{
+  "id": 8675309,
+  "date": "Thu Apr 09 2015 21:48:57 GMT-0400 (EDT)",
+  "amount": 2753.22,
+  "status": "issued"
+}
+            </pre></code>
+          </section>
+        </section>
+
+        <section>
+          <h2>Okay, so what?</h2>
+          <h3>Building this for real sounds really hard.</h3>
+          <h4 class="fragment">hint: it is.</h4>
+        </section>
+
+        <section>
+          <h2>Maki</h2>
+          <center><img src="img/maki-logo.jpg" style="margin:0;background:none;border:0;box-shadow:none;" /></center>
+        </section>
+        
+        <section>
+          <img src="https://dl.dropbox.com/s/mm7s7krxdrqkwpr/Screenshot%202015-04-09%2013.56.40.png?dl=0" />
+        </section>
+        
+        <section data-background="https://c1.staticflickr.com/3/2103/2518580946_36e27a6836_b.jpg">
+          <h2>Code is craft.</h2>
+          <h3 class="fragment">Be a craftsman.</h3>
+        </section>
+
+        <section>
+          <section>
+            <pre><code>
+var Maki = require('maki');
+var twitter = new Maki();
+
+twitter.define('Tweet', {
+  attributes: {
+    content: { type: 'String', max: 140 }
+  }
+});
+
+twitter.start();
+            </code></pre>
+          </section>
+          <section>
+            <pre><code>
+var Maki = require('maki');
+var twitter = new Maki();
+
+twitter.define('User', {
+  attributes: {
+    username: { type: String, max: 35 }
+  }
+});
+
+twitter.define('Tweet', {
+  attributes: {
+    content: { type: String, max: 140 },
+    _user: { type: twitter.mongoose.SchemaTypes.ObjectId, ref: 'User' }
+  }
+});
+
+twitter.start();
+            </code></pre>
+          </section>
+          <section>
+            <pre><code>
+var Maki = require('maki');
+var twitter = new Maki();
+
+var Passport = require('maki-passport-local');
+var passport = new Passport({
+  resource: 'User'
+});
+
+twitter.use( passport );
+
+twitter.define('User', {
+  attributes: {
+    username: { type: String , max: 35 , slug: true },
+    password: { type: String , max: 200 , masked: true }
+  }
+});
+
+twitter.define('Tweet', {
+  attributes: {
+    content: { type: String, max: 140 },
+    _user: { type: twitter.mongoose.SchemaTypes.ObjectId, ref: 'User' }
+  }
+});
+
+twitter.start();
+            </code></pre>
+          </section>
+          <section>
+            <pre><code>
+var Maki = require('maki');
+var twitter = new Maki();
+
+var Passport = require('maki-passport-local');
+var passport = new Passport({
+  resource: 'User'
+});
+
+twitter.use( passport );
+
+var User = twitter.define('User', {
+  attributes: {
+    username: { type: String , max: 35 , slug: true },
+    password: { type: String , max: 200 , masked: true }
+  }
+});
+
+var Tweet = twitter.define('Tweet', {
+  attributes: {
+    content: { type: String, max: 140 },
+    _user: { type: twitter.mongoose.SchemaTypes.ObjectId, ref: 'User' }
+  }
+});
+
+User.on('create', function(user) {
+  Tweet.create({
+    content: 'My first tweet!',
+    _user: user._id
+  }, function(err, tweet) { console.log( err || tweet ); });
+});
+
+twitter.start();
+            </code></pre>
+          </section>
+        </section>
+        
+        <section>
+          <section>
+            <h2>RFC 6902: JSON PATCH protocol</h2>
+            <p>
+              Atomic transformations for objects,<br/>
+              encoded as a standard JSON string.
+            </p>
+            
+            <pre><code>
+var ws = new WebSocket('ws://localhost:9200/tweets');    // generic WebSocket
+ws.onmessage = function( msg ) {                         // message handler
+  console.log( JSON.parse( msg.data ) );                 // JSON-RPC string + Data
+}                                                        //
+                                                         //
+{                                                        // WebSocket Message Data
+  "jsonrpc": "2.0",                                      // JSON-RPC wrapper
+  "method": "patch",                                     // JSON-RPC wrapper
+  "params": {                                            // JSON-RPC wrapper
+    "channel": "/tweets",                                // Maki protocol
+    "ops": [                                             // JSON PATCH
+      {                                                  // JSON PATCH
+        "op": "add",  // JSON PATCH method               // JSON PATCH
+        "path": "/0", // DOM/XPath for JSON              // JSON PATCH
+        "value": {                                       // JSON PATCH
+          "_id": "5526d60b20aed53950ab5112",             // JSON PATCH
+          "content": "Another fantastic example tweet."  // JSON PATCH
+        }                                                // JSON PATCH
+      }                                                  // JSON PATCH
+    ]                                                    // JSON PATCH
+  }                                                      // JSON-RPC wrapper
+  "id": "7f7244f0-def0-11e4-af97-75fb2146fd5f"           // JSON-RPC wrapper
+}                                                        // WebSocket Message Data
+            </code></pre>
+          </section>
+          
+          <section>
+            <h3>Multiplexing</h3>
+            <pre><code>
+var ws = new WebSocket('ws://localhost:9200/tweets');    // generic WebSocket
+ws.onmessage = function( msg ) {                         // message handler
+  console.log( JSON.parse( msg.data ) );                 // JSON-RPC messages
+}
+
+ws.send({
+  "jsonrpc": "2.0",
+  "method": "subscribe",
+  "params": {
+    "channel": "/users"
+  }
+});
+            </code></pre>
+          </section>
+        </section>
+        
+        <section data-background="https://raw.githubusercontent.com/martindale/maki/master/public/img/maki-architecture.png" data-background-size="70%"></section>
+
+        <section>
+          <h2>Discussion & Questions</h2>
+          
+          <p>eric@ericmartindale.com &nbsp;&nbsp; &bull; &nbsp;&nbsp; @martindale</p>
+          <p> <code>github.com/martindale</code></p>
+          
+          <img class="clean" src="img/eric-squared.jpg" style="height: 5em;" />
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+    
+        margin: 0,
+    
+        width: 1440,
+        height: 900,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
