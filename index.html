@@ -169,6 +169,26 @@
             <h3 class="fragment">what about all those client-side JS frameworks?</h3>
             <p class="fragment">They're perfect for <em>progressively enhancing</em> a document,<br />
               but only <em>after</em> it has been served.</p>
+              
+            <br /><br />
+            <p class="fragment"><strong>Benefits include:</strong> performance, resilience (high-latency connections), bandwidth...<br/>
+              <span class="fragment">...and <strong style="font-size: 1.2em;">developer ease-of-use</strong>.</span></p>
+          </section>
+
+          <section>
+            <h3>Methods</h3>
+            
+            <table>
+              <tr><td>GET</td><td>to retrieve a document or collection</td></tr>
+              <tr><td>POST</td><td>to create a document in a collection</td></tr>
+              <tr><td>PUT</td><td>to create a document at a specific location</td></tr>
+              <tr><td>PATCH</td><td>to update a document at a specific location</td></tr>
+              <tr><td>DELETE</td><td>to remove a document at a specific location</td></tr>
+              <tr><td>HEAD</td><td>to retrieve a document or collection metadata</td></tr>
+              <tr><td>OPTIONS</td><td>to retrieve a list of methods a document supports<sup>*</sup></td></tr>
+            </table>
+            
+            <p><sup>*</sup> in the current context (HTTP Auth)</p>
           </section>
           
           <section class="big-code">
@@ -218,22 +238,6 @@ HTTP/2.0 200 OK
   "status": "issued"
 }
             </pre></code>
-          </section>
-          
-          <section>
-            <h3>Methods</h3>
-            
-            <table>
-              <tr><td>GET</td><td>to retrieve a document or collection</td></tr>
-              <tr><td>POST</td><td>to create a document in a collection</td></tr>
-              <tr><td>PUT</td><td>to create a document at a specific location</td></tr>
-              <tr><td>PATCH</td><td>to update a document at a specific location</td></tr>
-              <tr><td>DELETE</td><td>to remove a document at a specific location</td></tr>
-              <tr><td>HEAD</td><td>to retrieve a document or collection metadata</td></tr>
-              <tr><td>OPTIONS</td><td>to retrieve a list of methods a document supports<sup>*</sup></td></tr>
-            </table>
-            
-            <p><sup>*</sup> in the current context (HTTP Auth)</p>
           </section>
 
         </section>
