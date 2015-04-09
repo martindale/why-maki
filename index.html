@@ -100,6 +100,10 @@
           <section>
             <h2><code>&lt;a href="location"&gt;document&lt;/a&gt;</code></h2>
           </section>
+          
+          <section>
+            <img src="img/directed-graph.png" style="border: none; box-shadow: none; background: none; width: 60%;" />
+          </section>
 
         </section>
         
@@ -185,10 +189,10 @@
               <tr><td>PATCH</td><td>to update a document at a specific location</td></tr>
               <tr><td>DELETE</td><td>to remove a document at a specific location</td></tr>
               <tr><td>HEAD</td><td>to retrieve a document or collection metadata</td></tr>
-              <tr><td>OPTIONS</td><td>to retrieve a list of methods a document supports<sup>*</sup></td></tr>
+              <tr><td>OPTIONS</td><td>to retrieve a list of methods a document supports<br />
+                in the current HTTP context (i.e., what credentials<br />
+                are provided in the <code>Authorization</code> header?)</td></tr>
             </table>
-            
-            <p><sup>*</sup> in the current context (HTTP Auth)</p>
           </section>
           
           <section class="big-code">
